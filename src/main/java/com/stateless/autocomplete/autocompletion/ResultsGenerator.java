@@ -39,8 +39,12 @@ public class ResultsGenerator {
 
         }
 
-        for (int i = 0; i < maxCount; i++)
+        int i = 1;
+
+        while (i <= maxCount && !candidates.isEmpty()) {
             autocompletionStrings.add(candidates.poll().getString());
+            i++;
+        }
 
         return autocompletionStrings;
     }
