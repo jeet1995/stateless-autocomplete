@@ -10,6 +10,7 @@ import com.sun.xml.internal.ws.util.StringUtils;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class AutocompleteRunner {
 
@@ -39,7 +40,7 @@ public class AutocompleteRunner {
                 Integer maxCount = MethodUtils.getIntValue(queryParts[2].trim());
 
                 List<String> autocompletionStrings = queryExecutor.execute(resultsGenerator, corpusMapArray, action, prefix, maxCount);
-                autocompletionStrings.forEach(System.out::print);
+                System.out.println(autocompletionStrings.stream().collect(Collectors.joining(",")) + "\n");
 
             } else {
                 System.out.println("Continuing the application");
@@ -63,8 +64,8 @@ public class AutocompleteRunner {
                 "|         This application allows the client to obtain possible autocomplete results for some query.            |\n" +
                 "|===============================================================================================================|\n" +
                 "|The client has the following options :                                                                         |\n" +
-                "|  1. Continue/Exit the application by entering Y or N through standard input                                   |\n" +
-                "|  2. If Y is entered, enter a search query in the form : complete,<prefix>,<max_count>                         |\n" +
+                "|  1. Enter a search query in the form : complete,<prefix>,<max_count>                                          |\n" +
+                "|  2. Continue/Exit the application by entering Y or N through standard input                                   |\n" +
                 "|===============================================================================================================|");
 
     }

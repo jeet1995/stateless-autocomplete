@@ -14,10 +14,6 @@ public class AutocompleteCandidate implements Comparable<AutocompleteCandidate> 
         return string;
     }
 
-    public int getFrequency() {
-        return frequency;
-    }
-
     @Override
     public int compareTo(AutocompleteCandidate o) {
 

@@ -3,3 +3,7 @@ Bat
 aBa
 bark
 bar
+z
+zo
+zor
+za
