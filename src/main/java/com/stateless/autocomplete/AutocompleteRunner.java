@@ -23,7 +23,15 @@ public class AutocompleteRunner {
     private static void printIntroductionMessage() {
 
         System.out.println("\n" +
-                "|===============================================================================================================|\n" + "|                                         Autocompletion Engine                                                 |\n" + "|===============================================================================================================|\n" + "|         This application allows the client to obtain possible autocomplete results for some query.            |\n" + "|===============================================================================================================|\n" + "|The client has the following options :                                                                         |\n" + "|  1. Enter a search query in the form : complete,<prefix>,<max_count>                                          |\n" + "|  2. Continue/Exit the application by entering Y or N through standard input                                   |\n" + "|===============================================================================================================|");
+                "|===============================================================================================================|\n" +
+                "|                                         Autocompletion Engine                                                 |\n" +
+                "|===============================================================================================================|\n" +
+                "|         This application allows the client to obtain possible autocomplete results for some query.            |\n" +
+                "|===============================================================================================================|\n" +
+                "|The client has the following options :                                                                         |\n" +
+                "|  1. Enter a search query in the form : complete,<prefix>,<max_count>                                          |\n" +
+                "|  2. Continue/Exit the application by entering Y or N through standard input                                   |\n" +
+                "|===============================================================================================================|");
 
     }
 
