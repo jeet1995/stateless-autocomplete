@@ -10,14 +10,9 @@ import java.util.HashMap;
 public class CorpusLoader {
 
     private static CorpusLoader corpusLoader;
-    private HashMap<String, Integer>[] corpusEntryWithFrequencyHashMapArray;
+    private static final HashMap<String, Integer>[] emptyCorpusMapArray = new HashMap[]{};
 
     private CorpusLoader() {
-        corpusEntryWithFrequencyHashMapArray = new HashMap[26];
-
-        for (int i = 0; i < corpusEntryWithFrequencyHashMapArray.length; i++)
-            corpusEntryWithFrequencyHashMapArray[i] = new HashMap<>();
-
     }
 
     public static CorpusLoader createInstance() {
@@ -28,23 +23,34 @@ public class CorpusLoader {
         return corpusLoader;
     }
 
-    public HashMap<String, Integer>[] getCorpusEntryWithFrequencyHashMapArray() {
-        return corpusEntryWithFrequencyHashMapArray;
-    }
-
-    public boolean loadCorpusDataFromFile(String pathToFile) {
+    /**
+     * Load the corpus data into a {@link HashMap} array.
+     *
+     * @param pathToFile The absolute path to the file which contains the corpus information.
+     *
+     * @return A corpus {@link HashMap} array either filled with some data or as an empty array.
+     * */
+    public HashMap[] loadCorpusDataFromFile(String pathToFile) {
 
         File file = new File("/Users/SubrataMohanty/Documents/abhijeet-mohanty-internship-2020/src/main/resources" +
                 "/corpus.txt");
 
+        HashMap<String, Integer>[] corpusMapArray;
+
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
+
+            corpusMapArray = new HashMap[26];
+
+            for (int i = 0; i < corpusMapArray.length; i++)
+                corpusMapArray[i] = new HashMap<>();
 
             bufferedReader
                     .lines()
                     .map(String::toLowerCase)
                     .filter(s -> s.matches("[a-z]*"))
-                    .forEach(s -> corpusEntryWithFrequencyHashMapArray[s.charAt(0) - 'a'].put(s,
-                            corpusEntryWithFrequencyHashMapArray[s.charAt(0) - 'a'].getOrDefault(s, 0) + 1));
+                    .forEach(s -> corpusMapArray[s.charAt(0) - 'a'].put(s, corpusMapArray[s.charAt(0) - 'a'].getOrDefault(s, 0) + 1));
+
+            return corpusMapArray;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -52,7 +58,8 @@ public class CorpusLoader {
             e.printStackTrace();
         }
 
-        return false;
+        // Helps avert the null pointer exception
+        return emptyCorpusMapArray;
     }
 
 
