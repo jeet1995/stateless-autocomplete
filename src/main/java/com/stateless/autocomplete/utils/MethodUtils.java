@@ -1,5 +1,8 @@
 package com.stateless.autocomplete.utils;
 
+/**
+ * Utility class for utility methods
+ * */
 public class MethodUtils {
 
     private MethodUtils() {

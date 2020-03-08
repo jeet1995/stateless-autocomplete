@@ -1,5 +1,10 @@
 package com.stateless.autocomplete.autocompletion;
 
+
+/**
+ * Each instance of this class is to be comparable based on its frequency first and
+ * then the lexicographical ordering of the string.
+ */
 public class AutocompleteCandidate implements Comparable<AutocompleteCandidate> {
 
     private String string;
