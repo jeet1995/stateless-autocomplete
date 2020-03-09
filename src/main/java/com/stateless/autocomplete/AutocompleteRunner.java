@@ -50,7 +50,12 @@ public class AutocompleteRunner {
         printIntroductionMessage();
 
         // Get loaded corpus
-        HashMap<String, Integer>[] corpusMapArray = CorpusLoader.createInstance().loadCorpusDataFromFile(filePath);
+        HashMap[] corpusMapArray = CorpusLoader.createInstance().loadCorpusDataFromFile(filePath);
+
+        if (corpusMapArray.length == 0) {
+            LOGGER.error("An exception has occurred when loading the file, using default corpus");
+            corpusMapArray = CorpusLoader.createInstance().loadCorpusDataFromFile(ApplicationConstantsUtils.RELATIVE_DEFAULT_CORPUS_PATH);
+        }
 
         ResultsGenerator resultsGenerator = ResultsGenerator.createInstance();
 

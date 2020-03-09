@@ -15,17 +15,16 @@ Name : Abhijeet Mohanty
     
    * Run the following command to build the project
    
-        `mvn clean install`
+        `mvn clean install compile`
    
    * Run the following command, to run `AutocompleteRunner`, specify the absolute path to the corpus file (*.txt) file
    as a command line argument.
         
-        `mvn clean install compile exec:java -Dexec.args="<path-to-some-corpus-file>"`
+        `mvn exec:java -Dexec.args="<path-to-some-corpus-file>"`
         
         * An example *(In any Linux based system)* :
         
-        `mvn clean install compile exec:java -Dexec.args="/Users/Mohanty/Documents/corpus.txt"`
-        
+        `mvn exec:java -Dexec.args="/Users/Mohanty/Documents/corpus.txt"`
         
    * An introductory instructional message will be displayed, please go ahead and type the query
    
@@ -34,7 +33,7 @@ Name : Abhijeet Mohanty
 ### Designing the application
    * `AutocompleteRunner` class
         * This class is from where the application starts.
-        * It prints an introductory instructional message, verifies the query typed in by the user.
+        * It prints an *introductory instructional message* and *verifies the query* typed in by the user.
         * In order to verify the query, I decided to have a functional interface argument as this would mean
         I can pass different behaviours of the method to the `verifyQuery` method.
    *  `CorpusLoader` class
@@ -50,7 +49,7 @@ Name : Abhijeet Mohanty
         whitespaces are removed) and extraneous whitespaces between words in the string are removed.
         * An example, the word `bat` is added to `corpusMapArray[1]` along with its frequency of occurrence
    * `ResultsGenerator` class
-        * This class helps check for the correctness of the query through the `verifyQuery` method.
+        * This class helps check the correctness of the query through the `verifyQuery` method.
         * Examples of correct queries
             * *complete,b,9*
             * *cOmplete,    a, 901*
@@ -58,7 +57,7 @@ Name : Abhijeet Mohanty
         * Examples of incorrect queries
             * *com, 12, 8.9*
         * This class generates the autocompletion strings through the `generateAutocompleteStrings` method
-            * Here the `prefix` is checked against the `corpusMapArray` for its presence.
+            * Here, the `prefix` is checked against the `corpusMapArray` for its presence.
             * In case, the first character of the prefix matches, the HashMap instance corresponding to
             that index is picked up.
             * Then, the `prefix` must not only be the substring of some keys in the `HashMap` but also
@@ -72,10 +71,10 @@ Name : Abhijeet Mohanty
                  which starts from index 0 in these candidate keys
                 ```
             * These candidate keys are added to an instance of a `PriorityQueue` class type defined by `AutocompleteCandidate`
-            * A `PriorityQueue` is chosen as it sorts its elements based on some compare logic as defined in the `compareTo` in `AutocompleteCandidate` 
+            * A `PriorityQueue` is chosen as it sorts its elements based on some compare logic as defined in the `compareTo` of the `AutocompleteCandidate` class.
             * The compare logic in `AutocompleteCandidate` class is the following :
                 * First, the higher the frequency, the more ahead the word comes in the list
-                * Second, the lower the lexicographical ordering comes , the more ahead the word comes in the list
+                * Second, the lower the lexicographical ordering of the word, the more ahead the word comes in the list
             * The `maxCount` is used to extract those many words from the `PriorityQueue`
             
 ### Testing

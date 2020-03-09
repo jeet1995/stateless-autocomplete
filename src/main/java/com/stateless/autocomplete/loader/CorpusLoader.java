@@ -61,11 +61,9 @@ public class CorpusLoader {
             return corpusMapArray;
 
         } catch (FileNotFoundException e) {
-            LOGGER.error("The file was not found on the path, exiting the application!");
-            System.exit(-1);
+            LOGGER.error("The file was not found on the path");
         } catch (IOException e) {
-            LOGGER.error("An exception was thrown read the file, exiting the application");
-            System.exit(-1);
+            LOGGER.error("An exception was thrown read the file");
         }
 
         // Helps avert the null pointer exception

@@ -2,17 +2,24 @@ package com.stateless.autocomplete.loader;
 
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
 import java.util.HashMap;
 
 public class CorpusLoaderUnitTest {
 
+    private CorpusLoader corpusLoader;
+
+    @Before
+    public void init() {
+        corpusLoader = CorpusLoader.createInstance();
+    }
+
     @Test
     public void testLoadFileIntoCorpus() {
 
-        HashMap<String, Integer>[] actualCorpusMapArray = CorpusLoader.createInstance().loadCorpusDataFromFile("corpus-files/corpus-test.txt");
+        HashMap<String, Integer>[] actualCorpusMapArray = corpusLoader.loadCorpusDataFromFile("corpus-files/corpus-test.txt");
         HashMap<String, Integer>[] expectedCorpusMapArray = new HashMap[26];
 
         for (int i = 0; i < 26; i++) {
@@ -31,4 +38,9 @@ public class CorpusLoaderUnitTest {
         Assert.assertArrayEquals(expectedCorpusMapArray, actualCorpusMapArray);
     }
 
+    @Test
+    public void testLoadFileIntoCorpusWithFileNotFoundException() {
+        Assert.assertArrayEquals(new HashMap[]{}, corpusLoader.loadCorpusDataFromFile
+                ("corpus-file/corpus-test.txt"));
+    }
 }
