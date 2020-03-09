@@ -7,12 +7,12 @@ import org.junit.Test;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
-public class CorpusLoadedUnitTest {
+public class CorpusLoaderUnitTest {
 
     @Test
     public void testLoadFileIntoCorpus() {
 
-        HashMap<String, Integer>[] actualCorpusMapArray = CorpusLoader.createInstance().loadCorpusDataFromFile("corpus-files/corpus.txt");
+        HashMap<String, Integer>[] actualCorpusMapArray = CorpusLoader.createInstance().loadCorpusDataFromFile("corpus-files/corpus-test.txt");
         HashMap<String, Integer>[] expectedCorpusMapArray = new HashMap[26];
 
         for (int i = 0; i < 26; i++) {
