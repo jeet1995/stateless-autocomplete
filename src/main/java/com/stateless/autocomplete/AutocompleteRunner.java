@@ -1,7 +1,6 @@
 package com.stateless.autocomplete;
 
 import com.stateless.autocomplete.autocompletion.ResultsGenerator;
-import com.stateless.autocomplete.executor.QueryExecutor;
 import com.stateless.autocomplete.loader.CorpusLoader;
 import com.stateless.autocomplete.utils.ApplicationConstantsUtils;
 import com.stateless.autocomplete.utils.MessageUtils;
@@ -30,7 +29,8 @@ public class AutocompleteRunner {
             LOGGER.error("The absolute path to the file has not been specified, using default corpus on the classpath");
             filepath = ApplicationConstantsUtils.RELATIVE_DEFAULT_CORPUS_PATH;
 
-        } else {
+        }
+        else {
 
             filepath = args[0];
 
@@ -54,8 +54,6 @@ public class AutocompleteRunner {
 
         ResultsGenerator resultsGenerator = ResultsGenerator.createInstance();
 
-        QueryExecutor queryExecutor = QueryExecutor.createInstance();
-
         Scanner in = new Scanner(System.in);
 
         String choice = "";
@@ -75,8 +73,8 @@ public class AutocompleteRunner {
                 Integer maxCount = MethodUtils.getIntValue(queryParts[2].trim());
 
                 // Execute the autocompletion query
-                List<String> autocompletionStrings = queryExecutor.execute(resultsGenerator, corpusMapArray, action,
-                        prefix, maxCount);
+                List<String> autocompletionStrings = resultsGenerator.generateAutocompleteStrings(corpusMapArray,
+                        action, prefix, maxCount);
 
                 // Display the autocompletion results
                 System.out.println(autocompletionStrings.stream().collect(Collectors.joining(",")) + "\n");
@@ -96,7 +94,7 @@ public class AutocompleteRunner {
 
     private static void printIntroductionMessage() {
 
-        System.out.println("\n" +
+        System.out.println(
                 "|===============================================================================================================|\n" +
                 "|                                         Autocompletion Engine                                                 |\n" +
                 "|===============================================================================================================|\n" +
