@@ -3,6 +3,7 @@ package com.stateless.autocomplete;
 import com.stateless.autocomplete.autocompletion.ResultsGenerator;
 import com.stateless.autocomplete.executor.QueryExecutor;
 import com.stateless.autocomplete.loader.CorpusLoader;
+import com.stateless.autocomplete.utils.ApplicationConstantsUtils;
 import com.stateless.autocomplete.utils.MessageUtils;
 import com.stateless.autocomplete.utils.MethodUtils;
 import org.slf4j.Logger;
@@ -21,13 +22,27 @@ public class AutocompleteRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(AutocompleteRunner.class);
 
     public static void main(String[] args) {
-        run();
+
+        String filepath;
+
+        if (args.length < 1) {
+
+            LOGGER.error("The absolute path to the file has not been specified, using default corpus on the classpath");
+            filepath = ApplicationConstantsUtils.RELATIVE_DEFAULT_CORPUS_PATH;
+
+        } else {
+
+            filepath = args[0];
+
+        }
+
+        run(filepath);
     }
 
     /**
      * Starts the autocompletion engine
      */
-    private static void run() {
+    private static void run(String filePath) {
 
         LOGGER.info("Starting the application.");
 
@@ -35,7 +50,7 @@ public class AutocompleteRunner {
         printIntroductionMessage();
 
         // Get loaded corpus
-        HashMap<String, Integer>[] corpusMapArray = CorpusLoader.createInstance().loadCorpusDataFromFile("corpus.txt");
+        HashMap<String, Integer>[] corpusMapArray = CorpusLoader.createInstance().loadCorpusDataFromFile(filePath);
 
         ResultsGenerator resultsGenerator = ResultsGenerator.createInstance();
 

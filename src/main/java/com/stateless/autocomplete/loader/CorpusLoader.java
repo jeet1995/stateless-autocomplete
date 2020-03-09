@@ -35,11 +35,9 @@ public class CorpusLoader {
      */
     public HashMap[] loadCorpusDataFromFile(String pathToFile) {
 
-        LOGGER.info("Loading file from path {}", "/Users/SubrataMohanty/Documents/abhijeet-mohanty-internship-2020/src/main/resources" +
-        "/corpus.txt");
+        LOGGER.info("Loading file from path {}", pathToFile);
 
-        File file = new File("/Users/SubrataMohanty/Documents/abhijeet-mohanty-internship-2020/src/main/resources" +
-                "/corpus.txt");
+        File file = new File(pathToFile);
 
         HashMap<String, Integer>[] corpusMapArray;
 
@@ -53,12 +51,16 @@ public class CorpusLoader {
             bufferedReader.lines().map(String::toLowerCase).filter(s -> s.matches("[a-z]*")).forEach(s ->
                     corpusMapArray[s.charAt(0) - 'a'].put(s, corpusMapArray[s.charAt(0) - 'a'].getOrDefault(s, 0) + 1));
 
+            LOGGER.info("Loaded contents of file {} into memory", file.getName());
+
             return corpusMapArray;
 
         } catch (FileNotFoundException e) {
             LOGGER.error("The file was not found on the path, exiting the application!");
+            System.exit(-1);
         } catch (IOException e) {
-            LOGGER.error("An exception was thrown read the file.");
+            LOGGER.error("An exception was thrown read the file, exiting the application");
+            System.exit(-1);
         }
 
         // Helps avert the null pointer exception
