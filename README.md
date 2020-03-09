@@ -20,7 +20,12 @@ Name : Abhijeet Mohanty
    * Run the following command, to run `AutocompleteRunner`, specify the absolute path to the corpus file (*.txt) file
    as a command line argument.
         
-        `mvn clean install exec:java -Dexec.mainClass="com.stateless.autocomplete.AutocompleteRunner"`
+        `mvn clean install compile exec:java -Dexec.args="<path-to-some-corpus-file>"`
+        
+        * An example *(In any Linux based system)* :
+        
+        `mvn clean install compile exec:java -Dexec.args="/Users/Mohanty/Documents/corpus.txt"`
+        
         
    * An introductory instructional message will be displayed, please go ahead and type the query
    
@@ -72,12 +77,31 @@ Name : Abhijeet Mohanty
                 * First, the higher the frequency, the more ahead the word comes in the list
                 * Second, the lower the lexicographical ordering comes , the more ahead the word comes in the list
             * The `maxCount` is used to extract those many words from the `PriorityQueue`
+            
+### Testing
+* The `ResultsGeneratorUnitTest` and `CorpusLoaderUnitTest` check the essential functionality of the application such as :
+    * Creation of the `corpusMapArray`
+    * Generation of `autocompletionStrings`
 
 ### Execution logs
+* Input corpus.txt
 
 ```
-13:53:02.727 [main] ERROR com.stateless.autocomplete.AutocompleteRunner - The absolute path to the file has not been specified, using default corpus on the classpath
-13:53:02.732 [main] INFO com.stateless.autocomplete.AutocompleteRunner - Starting the application.
+bat
+Bat
+aBa
+bark
+bar
+ba ba    black    sheep
+z
+zo
+zor
+za
+```
+
+* Execution logs :
+```
+15:40:02.771 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.AutocompleteRunner - Starting the application.
 |===============================================================================================================|
 |                                         Autocompletion Engine                                                 |
 |===============================================================================================================|
@@ -87,26 +111,40 @@ Name : Abhijeet Mohanty
 |  1. Enter a search query in the form : complete,<prefix>,<max_count>                                          |
 |  2. Continue/Exit the application by entering Y or N through standard input                                   |
 |===============================================================================================================|
-13:53:02.733 [main] INFO com.stateless.autocomplete.loader.CorpusLoader - Loading file from path corpus-files/corpus.txt
-13:53:02.903 [main] INFO com.stateless.autocomplete.loader.CorpusLoader - Loaded contents of file corpus.txt into memory
-complete,bar,3
-13:53:17.312 [main] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Attempting to verify the query complete,bar,3
-13:53:17.315 [main] INFO com.stateless.autocomplete.AutocompleteRunner - Query complete,bar,3 has been successfully verified
-13:53:17.316 [main] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Generating autocomplete strings.
+15:40:02.775 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.loader.CorpusLoader - Loading file from path /Users/SubrataMohanty/Documents/abhijeet-mohanty-internship-2020/corpus-files/corpus.txt
+15:40:02.785 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.loader.CorpusLoader - Loaded contents of file corpus.txt into memory
+complete,ba, 2
+15:40:26.390 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Attempting to verify the query complete,b, 2
+15:40:26.392 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.AutocompleteRunner - Query complete,b, 2 has been successfully verified
+15:40:26.392 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Generating autocomplete strings.
+bat,ba ba black sheep
+
+Do you wish to continue (Y/N) ?
+y
+complete,Ba Ba,100
+15:44:43.316 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Attempting to verify the query complete,Ba Ba,100
+15:44:43.316 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.AutocompleteRunner - Query complete,Ba Ba,100 has been successfully verified
+15:44:43.316 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Generating autocomplete strings.
+ba ba black sheep
+
+Do you wish to continue (Y/N) ?
+y
+comPLETE,   bar,    -5
+15:45:01.284 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Attempting to verify the query comPLETE,   bar,    -5
+15:45:01.284 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.AutocompleteRunner - Query comPLETE,   bar,    -5 has been successfully verified
+15:45:01.285 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Generating autocomplete strings.
 bar,bark
 
 Do you wish to continue (Y/N) ?
 y
-complete,zo,9
-13:53:32.540 [main] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Attempting to verify the query complete,zo,9
-13:53:32.540 [main] INFO com.stateless.autocomplete.AutocompleteRunner - Query complete,zo,9 has been successfully verified
-13:53:32.540 [main] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Generating autocomplete strings.
-zo,zor
+complete,   ba,  1
+15:45:26.518 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Attempting to verify the query complete,   ba,  1
+15:45:26.518 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.AutocompleteRunner - Query complete,   ba,  1 has been successfully verified
+15:45:26.518 [com.stateless.autocomplete.AutocompleteRunner.main()] INFO com.stateless.autocomplete.autocompletion.ResultsGenerator - Generating autocomplete strings.
+bat
 
 Do you wish to continue (Y/N) ?
 n
-
-Process finished with exit code 0
 ```
 
 ### Future improvements
