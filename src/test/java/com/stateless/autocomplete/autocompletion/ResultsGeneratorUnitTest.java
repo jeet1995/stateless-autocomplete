@@ -16,7 +16,7 @@ public class ResultsGeneratorUnitTest {
 
     @Before
     public void loadData() {
-        corpusMapArray = CorpusLoader.createInstance().loadCorpusDataFromFile("corpus-files/corpus.txt");
+        corpusMapArray = CorpusLoader.createInstance().loadCorpusDataFromFile("corpus-files/corpus-test.txt");
         resultsGenerator = ResultsGenerator.createInstance();
     }
 
