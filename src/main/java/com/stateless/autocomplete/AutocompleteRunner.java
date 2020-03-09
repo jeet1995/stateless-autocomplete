@@ -69,7 +69,7 @@ public class AutocompleteRunner {
                 String[] queryParts = query.split(",");
 
                 String action = queryParts[0].toLowerCase().trim();
-                String prefix = queryParts[1].toLowerCase().trim();
+                String prefix = queryParts[1].toLowerCase().trim().replaceAll("\\s+", " ");
                 Integer maxCount = MethodUtils.getIntValue(queryParts[2].trim());
 
                 // Execute the autocompletion query
@@ -133,7 +133,7 @@ public class AutocompleteRunner {
 
             }
 
-            if (!queryArray[1].toLowerCase().trim().matches("[a-z]*")) {
+            if (!queryArray[1].toLowerCase().trim().matches("[a-z][a-z\\s]*")) {
 
                 LOGGER.error(MessageUtils.INCORRECT_QUERY_PREFIX_MESSAGE);
                 return false;

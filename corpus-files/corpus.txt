@@ -3,6 +3,7 @@ Bat
 aBa
 bark
 bar
+ba ba    black    sheep
 z
 zo
 zor

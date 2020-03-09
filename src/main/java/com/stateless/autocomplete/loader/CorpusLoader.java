@@ -48,8 +48,13 @@ public class CorpusLoader {
             for (int i = 0; i < corpusMapArray.length; i++)
                 corpusMapArray[i] = new HashMap<>();
 
-            bufferedReader.lines().map(String::toLowerCase).filter(s -> s.matches("[a-z]*")).forEach(s ->
-                    corpusMapArray[s.charAt(0) - 'a'].put(s, corpusMapArray[s.charAt(0) - 'a'].getOrDefault(s, 0) + 1));
+            bufferedReader
+                    .lines()
+                    .map(String::toLowerCase)
+                    .map(String::trim)
+                    .map(s -> s.replaceAll("\\s+", " "))
+                    .filter(s -> s.matches("[a-z][a-z\\s]*"))
+                    .forEach(s -> corpusMapArray[s.charAt(0) - 'a'].put(s, corpusMapArray[s.charAt(0) - 'a'].getOrDefault(s, 0) + 1));
 
             LOGGER.info("Loaded contents of file {} into memory", file.getName());
 

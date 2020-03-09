@@ -72,6 +72,11 @@ public class ResultsGenerator {
 
         int i = 1;
 
+        // If maxCount is lesser than 1, extract all candidates
+        if (maxCount < i)
+            while (!candidates.isEmpty())
+               autocompletionStrings.add(candidates.poll().getString());
+
         // Extract top maxCount candidates and add it to a list
         while (i <= maxCount && !candidates.isEmpty()) {
             autocompletionStrings.add(candidates.poll().getString());
