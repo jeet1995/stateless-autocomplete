@@ -100,7 +100,7 @@ public class AutocompleteRunner {
                 "|===============================================================================================================|\n" +
                 "|                                         Autocompletion Engine                                                 |\n" +
                 "|===============================================================================================================|\n" +
-                "|         This application allows the client to obtain possible autocomplete results for some query.            |\n" +
+                "|         This application enables the client to obtain possible autocomplete results for some query.           |\n" +
                 "|===============================================================================================================|\n" +
                 "|The client has the following options :                                                                         |\n" +
                 "|  1. Enter a search query in the form : complete,<prefix>,<max_count>                                          |\n" +
