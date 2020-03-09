@@ -41,6 +41,14 @@
                     <target>8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>RELEASE</version>
+                <configuration>
+                    <mainClass>com.stateless.autocomplete.AutocompleteRunner</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
