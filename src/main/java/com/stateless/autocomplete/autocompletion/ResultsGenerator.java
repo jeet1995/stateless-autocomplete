@@ -1,6 +1,8 @@
 package com.stateless.autocomplete.autocompletion;
 
 import com.stateless.autocomplete.verifier.QueryVerifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -17,6 +19,7 @@ import java.util.*;
  */
 public class ResultsGenerator {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ResultsGenerator.class);
     private static ResultsGenerator resultsGenerator;
 
     private ResultsGenerator() {
@@ -31,11 +34,13 @@ public class ResultsGenerator {
     }
 
     public boolean verifyQuery(QueryVerifier queryVerifier, String query) {
+
+        LOGGER.info("Attempting to verify the query {}", query);
         return queryVerifier.verifyQuery(query);
     }
 
     /**
-     * Generates a <cod>{@link List}</cod> of strings denoting the autocompletion results
+     * Generates a <code>{@link List}</code> of strings denoting the autocompletion results
      *
      * @param corpusMapArray Stores the strings specified in the input corpus file
      * @param action         Action to be performed on the corpus
@@ -45,6 +50,8 @@ public class ResultsGenerator {
      */
     public List<String> generateAutocompleteStrings(HashMap[] corpusMapArray, String action, String prefix, Integer
             maxCount) {
+
+        LOGGER.info("Generating autocomplete strings.");
 
         List<String> autocompletionStrings = new ArrayList<>();
 

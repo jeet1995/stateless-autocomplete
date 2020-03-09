@@ -1,14 +1,18 @@
 package com.stateless.autocomplete.loader;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.*;
 import java.util.HashMap;
 
 /**
- * This class helps load the corpus into memory. An array of <Code>{@link HashMap}</Code>
+ * This class helps load the corpus into memory. An array of <code>{@link HashMap}</code>
  * is used to store the corpus content.
  */
 public class CorpusLoader {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(CorpusLoader.class);
     private static final HashMap<String, Integer>[] emptyCorpusMapArray = new HashMap[]{};
     private static CorpusLoader corpusLoader;
 
@@ -27,9 +31,12 @@ public class CorpusLoader {
      * Load the corpus data into a {@link HashMap} array.
      *
      * @param pathToFile The absolute path to the file which contains the corpus information.
-     * @return A corpus {@link HashMap} array either filled with some data or as an empty array.
+     * @return A corpus <code>{@link HashMap}</code> array either filled with some data or as an empty array.
      */
     public HashMap[] loadCorpusDataFromFile(String pathToFile) {
+
+        LOGGER.info("Loading file from path {}", "/Users/SubrataMohanty/Documents/abhijeet-mohanty-internship-2020/src/main/resources" +
+        "/corpus.txt");
 
         File file = new File("/Users/SubrataMohanty/Documents/abhijeet-mohanty-internship-2020/src/main/resources" +
                 "/corpus.txt");
@@ -49,9 +56,9 @@ public class CorpusLoader {
             return corpusMapArray;
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error("The file was not found on the path, exiting the application!");
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("An exception was thrown read the file.");
         }
 
         // Helps avert the null pointer exception

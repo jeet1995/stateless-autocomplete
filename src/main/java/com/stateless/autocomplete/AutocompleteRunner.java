@@ -5,6 +5,8 @@ import com.stateless.autocomplete.executor.QueryExecutor;
 import com.stateless.autocomplete.loader.CorpusLoader;
 import com.stateless.autocomplete.utils.MessageUtils;
 import com.stateless.autocomplete.utils.MethodUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +18,8 @@ import java.util.stream.Collectors;
  */
 public class AutocompleteRunner {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AutocompleteRunner.class);
+
     public static void main(String[] args) {
         run();
     }
@@ -24,6 +28,8 @@ public class AutocompleteRunner {
      * Starts the autocompletion engine
      */
     private static void run() {
+
+        LOGGER.info("Starting the application.");
 
         // Print introductory instructional message
         printIntroductionMessage();
@@ -63,7 +69,6 @@ public class AutocompleteRunner {
             }
             else {
                 System.out.println("Continuing the application");
-                continue;
             }
 
             System.out.println("Do you wish to continue (Y/N) ?");
@@ -94,7 +99,7 @@ public class AutocompleteRunner {
      *
      * @param resultsGenerator This class is responsible for verifying the query
      * @param query            The query to be verified
-     * @return <<code>boolean</code> value denoting whether a query is verified or not
+     * @return <code>boolean</code> value denoting whether a query is verified or not
      */
     private static boolean canExecute(ResultsGenerator resultsGenerator, String query) {
 
@@ -104,29 +109,30 @@ public class AutocompleteRunner {
 
             if (queryArray.length < 3) {
 
-                System.out.println(MessageUtils.INCORRECT_QUERY_MESSAGE);
+                LOGGER.error(MessageUtils.INCORRECT_QUERY_MESSAGE);
                 return false;
             }
 
             if (!queryArray[0].toLowerCase().trim().equals("complete")) {
 
-                System.out.println(MessageUtils.INCORRECT_QUERY_ACTION_MESSAGE);
+                LOGGER.error(MessageUtils.INCORRECT_QUERY_ACTION_MESSAGE);
                 return false;
 
             }
 
             if (!queryArray[1].toLowerCase().trim().matches("[a-z]*")) {
 
-                System.out.println(MessageUtils.INCORRECT_QUERY_PREFIX_MESSAGE);
+                LOGGER.error(MessageUtils.INCORRECT_QUERY_PREFIX_MESSAGE);
                 return false;
             }
 
             if (MethodUtils.getIntValue(queryArray[2].trim()) == null) {
 
-                System.out.println(MessageUtils.INCORRECT_QUERY_MAX_COUNT_MESSAGE);
+                LOGGER.error(MessageUtils.INCORRECT_QUERY_MAX_COUNT_MESSAGE);
                 return false;
             }
 
+            LOGGER.info("Query {} has been successfully verified", query);
             return true;
 
         }, query);
