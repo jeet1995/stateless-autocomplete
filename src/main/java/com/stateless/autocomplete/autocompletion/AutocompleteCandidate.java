@@ -25,6 +25,6 @@ public class AutocompleteCandidate implements Comparable<AutocompleteCandidate> 
         if (o.frequency != this.frequency)
             return o.frequency - this.frequency;
 
-        return o.string.compareTo(this.string);
+        return this.string.compareTo(o.string);
     }
 }
