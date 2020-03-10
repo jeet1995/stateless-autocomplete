@@ -125,7 +125,7 @@ public class AutocompleteRunner {
 
             String[] queryArray = s.split(",");
 
-            if (queryArray.length < 3) {
+            if (queryArray.length != 3) {
 
                 LOGGER.error(MessageUtils.INCORRECT_QUERY_MESSAGE);
                 return false;
