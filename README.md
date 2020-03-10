@@ -54,6 +54,8 @@ Name : Abhijeet Mohanty
             * *complete,b,9*
             * *cOmplete,    a, 901*
             * *complETE, a    bb cde,7*
+            * *complete,a,0*
+            * *complete, ab, -2*
         * Examples of incorrect queries
             * *com, 12, 8.9*
         * This class generates the autocompletion strings through the `generateAutocompleteStrings` method
