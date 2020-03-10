@@ -80,6 +80,12 @@ Name : Abhijeet Mohanty
                 * First, the higher the frequency, the more ahead the word comes in the list
                 * Second, the lower the lexicographical ordering of the word, the more ahead the word comes in the list
             * The `maxCount` is used to extract those many words from the `PriorityQueue`
+   * Using the **Singleton** design pattern
+        * As `CorpusLoader` and `ResultsGenerator` have utility like functions which are basically *pure* only one instance
+          of these classes are needed in one running JVM instance.
+   * Using functional interface `QueryVerifier`
+        * I make use of functional interface as it helps me vary the functionality of the `verifyQuery` method
+        at different places if in case I had to. 
             
 ### Testing
 * The `ResultsGeneratorUnitTest` and `CorpusLoaderUnitTest` check the essential functionality of the application such as :
@@ -168,5 +174,5 @@ n
 * [Priority queues in Java](https://docs.oracle.com/javase/7/docs/api/java/util/PriorityQueue.html)
 * [Functional interfaces in Java](http://tutorials.jenkov.com/java-functional-programming/functional-interfaces.html)
 * [Maven Build Phases](https://www.baeldung.com/maven-goals-phases)
-* [JUnit4 vs JUnit5](https://www.baeldung.com/junit-5-migration)
+* [Migrating from JUnit4 to JUnit5](https://www.baeldung.com/junit-5-migration)
 * [JUnit 4](https://www.baeldung.com/junit-4-rules)
