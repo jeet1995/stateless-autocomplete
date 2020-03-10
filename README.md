@@ -81,7 +81,7 @@ Name : Abhijeet Mohanty
                 * Second, the lower the lexicographical ordering of the word, the more ahead the word comes in the list
             * The `maxCount` is used to extract those many words from the `PriorityQueue`
    * Using the **Singleton** design pattern
-        * As `CorpusLoader` and `ResultsGenerator` have utility like functions which are basically *pure* only one instance
+        * As `CorpusLoader` and `ResultsGenerator` have utility like functions which are basically *pure*, only one instance
           of these classes are needed in one running JVM instance.
    * Using functional interface `QueryVerifier`
         * I make use of functional interface as it helps me vary the functionality of the `verifyQuery` method
