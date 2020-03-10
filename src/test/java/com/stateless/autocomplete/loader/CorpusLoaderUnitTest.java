@@ -2,17 +2,17 @@ package com.stateless.autocomplete.loader;
 
 
 import org.junit.Assert;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashMap;
 
 public class CorpusLoaderUnitTest {
 
-    private CorpusLoader corpusLoader;
+    private static CorpusLoader corpusLoader;
 
-    @Before
-    public void init() {
+    @BeforeClass
+    public static void init() {
         corpusLoader = CorpusLoader.createInstance();
     }
 
@@ -40,7 +40,6 @@ public class CorpusLoaderUnitTest {
 
     @Test
     public void testLoadFileIntoCorpusWithFileNotFoundException() {
-        Assert.assertArrayEquals(new HashMap[]{}, corpusLoader.loadCorpusDataFromFile
-                ("corpus-file/corpus-test.txt"));
+        Assert.assertArrayEquals(new HashMap[]{}, corpusLoader.loadCorpusDataFromFile("corpus-file/corpus-test.txt"));
     }
 }
