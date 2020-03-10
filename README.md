@@ -4,16 +4,17 @@ Name : Abhijeet Mohanty
 ---
 ### Development environment
    - **OS:** MacOs Mojave 
-   - **IDE:** IntelliJ IDEA Ultimate 2018.1
-   - **Java version:** 1.8.121
-   - **Maven version:** 3.3.9
+   - **IDE:** IntelliJ IDEA Ultimate 2018.1.2
+   - **Language used :** Java v1.8.121
+   - **Build tool used :** Maven 3.3.9
+   - *Disclaimer :* This project is currently is maintained in a private GitHub repository to allow for a back up.
    
 ### Instructions
    * Once the project has been unzipped, navigate to the project directory using the command :
    
         `cd abhijeet-mohanty-internship-2020/`
     
-   * Run the following command to build the project
+   * Run the following command to remove old built files, installing the project to a local repository and finally compiling it.
    
         `mvn clean install compile`
    
@@ -58,6 +59,7 @@ Name : Abhijeet Mohanty
             * *complete, ab, -2*
         * Examples of incorrect queries
             * *com, 12, 8.9*
+        * **NOTE :** In case a `maxCount` of less than `1` is specified, all possible `autocompleteCandidates` are returned.
         * This class generates the autocompletion strings through the `generateAutocompleteStrings` method
             * Here, the `prefix` is checked against the `corpusMapArray` for its presence.
             * In case, the first character of the prefix matches, the HashMap instance corresponding to
@@ -161,3 +163,10 @@ n
     of the data in the corpus.
     * The resultant data can be loaded onto a `Trie` to help generate autocompletion strings
  
+### References used
+* [CMU's lecture notes on Suffix Trees](https://www.cs.cmu.edu/~ckingsf/bioinfo-lectures/suffixtrees.pdf)
+* [Priority queues in Java](https://docs.oracle.com/javase/7/docs/api/java/util/PriorityQueue.html)
+* [Functional interfaces in Java](http://tutorials.jenkov.com/java-functional-programming/functional-interfaces.html)
+* [Maven Build Phases](https://www.baeldung.com/maven-goals-phases)
+* [JUnit4 vs JUnit5](https://www.baeldung.com/junit-5-migration)
+* [JUnit 4](https://www.baeldung.com/junit-4-rules)
