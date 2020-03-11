@@ -24,16 +24,12 @@ public class AutocompleteRunner {
 
         String filepath;
 
-        if (args.length < 1) {
-
+        if (args.length != 1) {
             LOGGER.error("The absolute path to the file has not been specified, using default corpus on the classpath");
             filepath = ApplicationConstantsUtils.RELATIVE_DEFAULT_CORPUS_PATH;
-
         }
         else {
-
             filepath = args[0];
-
         }
 
         run(filepath);
