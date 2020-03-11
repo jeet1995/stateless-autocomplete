@@ -4,7 +4,7 @@ Name : Abhijeet Mohanty
 ---
 ### Development environment
    - **OS:** MacOs Mojave 
-   - **IDE:** IntelliJ IDEA Ultimate 2018.1.2
+   - **IDE:** IntelliJ IDEA Ultimate 2018.1.8
    - **Language used :** Java v1.8.121
    - **Build tool used :** Maven 3.3.9
    - *Disclaimer :* This project is currently is maintained in a private GitHub repository to allow for a back up.
@@ -45,7 +45,8 @@ Name : Abhijeet Mohanty
         * As this application does not require functionality such as `delete`, I just make use of simple 
         array of `HashMap`.
         * The length of the aforementioned array is `26` which is basically all the letters of the english
-        alphabet.
+        alphabet. 
+        * An example, index 0 corresponds to `a`, index 1 corresponds to `b` and so on.
         * Each string in the corpus is converted to lower case, trimmed of whitespaces (trailing and leading
         whitespaces are removed) and extraneous whitespaces between words in the string are removed.
         * An example, the word `bat` is added to `corpusMapArray[1]` along with its frequency of occurrence
@@ -56,7 +57,7 @@ Name : Abhijeet Mohanty
             * *cOmplete,    a, 901*
             * *complETE, a    bb cde,7*
             * *complete,a,0*
-            * *complete, ab, -2*
+            * *complete, ab, -2* 
         * Examples of incorrect queries
             * *com, 12, 8.9*
         * **NOTE :** In case a `maxCount` of less than `1` is specified, all possible `autocompleteCandidates` are returned.
@@ -171,6 +172,7 @@ n
  
 ### References used
 * [CMU's lecture notes on Suffix Trees](https://www.cs.cmu.edu/~ckingsf/bioinfo-lectures/suffixtrees.pdf)
+* [CMU's lecture notes on Tries](https://www.cs.cmu.edu/~wlovas/15122-r11/lectures/24-tries.pdf)
 * [Priority queues in Java](https://docs.oracle.com/javase/7/docs/api/java/util/PriorityQueue.html)
 * [Functional interfaces in Java](http://tutorials.jenkov.com/java-functional-programming/functional-interfaces.html)
 * [Maven Build Phases](https://www.baeldung.com/maven-goals-phases)
